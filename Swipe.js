@@ -30,6 +30,7 @@ function Swipe(container) {
     //设置每一个页面li的宽度
     $.each(slides, function(index) {
         var slide = slides.eq(index); //获取到每一个li元素    
+        
         slide.css({
             width: width + 'px',
             height: height + 'px'
