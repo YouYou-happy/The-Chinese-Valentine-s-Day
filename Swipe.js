@@ -15,11 +15,11 @@ function Swipe(container) {
     // li页面数量
     var slides = element.find("li");
 
-    //获取容器尺寸
+    // 获取容器尺寸
     var width = container.width();
     var height = container.height();
 
-    //设置li页面总宽度
+    // 设置li页面总宽度
     element.css({
         width: (slides.length * width) + 'px',
         height: height + 'px'
