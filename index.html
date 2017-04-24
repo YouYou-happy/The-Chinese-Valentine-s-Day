@@ -65,6 +65,19 @@
                 .then(function() {
                     //第一次走路完成
                     boy.setColoer('red')
+                    .then(function() {
+                    //第二次走
+                         return boy.walkTo(2000, 0.4)
+                    }).then(function() {
+                    //第二次走路完成
+                    boy.setColoer('yellow')
+                    }).then(function() {
+                    //第三次走路
+                        return boy.walkTo(2000, 0.6)
+                    }).then(function() {
+                    //第三次走路完成
+                        boy.setColoer('blue')
+                    });
                 })
                   
         });
