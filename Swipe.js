@@ -2,6 +2,7 @@
 //页面滑动 //
 /////////
 
+
 /**
  * [Swipe description]
  * @param {[type]} container [页面容器节点]
@@ -34,9 +35,9 @@ function Swipe(container) {
         });
     });
 
-    // 监控完成与移动
+    //监控完成与移动
     swipe.scrollTo = function(x, speed) {
-        // 执行动画移动
+        //执行动画移动
         element.css({
             'transition-timing-function' : 'linear',
             'transition-duration'        : speed + 'ms',

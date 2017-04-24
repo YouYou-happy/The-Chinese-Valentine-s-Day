@@ -4,84 +4,72 @@
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title>慕课七夕主题</title>
+    <link rel='stylesheet' href='style.css' />
+    <link rel='stylesheet' href='pageA.css' />
     <style type="text/css">
-        div {
-            background-color: yellow;
-            width: 200px;
-            height: 200px;
-            text-align: center;
-            border: 2px solid red;
-            margin: 3px;
-            font-size: 14px;
-        }
-        #block3,#block4{
-            background-color: #CAE1FF;
-        }
         button {
-            font-size: 14px;
+            width: 80px;
+            height: 50px;
+        }
+        
+        .button {
+            position: absolute;
+            bottom: 0;
         }
     </style>
     <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+    <script type="text/javascript" src="http://img.mukewang.com/down/55ac9ea30001ace700000000.js"></script>
+    <script type="text/javascript" src="Swipe.js"></script>
+    <script type="text/javascript" src="BoyWalk.js"></script>
 </head>
 
 <body>
-    <button>点击测试回调处理</button>
-    <button>点击测试$.Deferred处理</button>
-    </br>
-    </br>
-    <div id="block1">block1执行动画</div>
-    <div id="block2">block2执行动画</div>
-    <div id="block3">block3执行动画</div>
-    <div id="block4">block4执行动画</div>
-
-    <script type="text/javascript">
-    // 回调处理
-    $('button:first').click(function() {
-        $("#block1").animate({
-            width: "50%"
-        }, 2000, function() {  // 嵌套回调
-            $("#block2").animate({
-                width: "50%"
-            }, 2000);
-        });
-    });
-  
-    // jQuery的Deferred处理
-    $('button:last').click(function() {
-
-        function animate1() {
-            var dtd = $.Deferred(); // 生成Deferred对象
-            $("#block3").animate({
-                width: "50%"
-            }, 2000, function() {
-                dtd.resolve(); // 改变Deferred对象的执行状态
-            });
-            return dtd;
-        }
-
-        function animate2() {
-            var dtd = $.Deferred(); // 生成Deferred对象
-            $("#block4").animate({
-                width: "50%"
-            }, 2000, function() {
-                dtd.resolve(); // 改变Deferred对象的执行状态
-            });
-            return dtd;
-        }
-
-        var anim = animate1();
-
-        anim.then(function() {
-            $("#block3").text('block3动画动画直接结束');
-            return animate2();
-        }).then(function() {
-            $("#block4").text('block4动画动画直接结束');
-        });
-
-    });
-
-
-    </script>
+    <div id='content'>
+        <ul class='content-wrap'>
+            <li>
+                <div class="a_background">
+                    <div class="a_background_top"></div>
+                    <div class="a_background_middle"></div>
+                    <div class="a_background_botton"></div>
+                </div>
+            </li>
+            <li> 页面2 </li>
+            <li> 页面3 </li>
+        </ul>
+        <div id="boy" class="charector"></div>
+       <div class="button">
+         <button>开始</button>
+       </div>
+    </div>
 </body>
+<script type="text/javascript">
+    $(function() {
+    
+        var container = $("#content");
+        var swipe = Swipe(container);
+    
+        ////////////////////////////////////////////////////////
+        //=================== 动画处理 ====================== //
+        ////////////////////////////////////////////////////////
+    
+        //////////
+        // 小孩走路 //
+        //////////
+        var boy = BoyWalk();
+    
+        // 开始
+        $("button:first").click(function() {
+    
+            // 开始第一次走路
+            boy.walkTo(2000, 0.2)
+                .then(function() {
+                    //第一次走路完成
+                    boy.setColoer('red')
+                })
+                  
+        });
+    
+    })
+</script>
 
 </html>
