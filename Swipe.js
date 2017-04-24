@@ -28,16 +28,16 @@ function Swipe(container) {
 
     // 设置每一个页面li的宽度
     $.each(slides, function(index) {
-        var slide = slides.eq(index); // 获取到每一个li元素    
+        var slide = slides.eq(index); //获取到每一个li元素    
         slide.css({
             width: width + 'px',
             height: height + 'px'
         });
     });
 
-    //监控完成与移动
+    // 监控完成与移动
     swipe.scrollTo = function(x, speed) {
-        //执行动画移动
+        // 执行动画移动
         element.css({
             'transition-timing-function' : 'linear',
             'transition-duration'        : speed + 'ms',
