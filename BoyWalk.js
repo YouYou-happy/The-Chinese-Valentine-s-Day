@@ -12,12 +12,12 @@ function BoyWalk() {
     // 获取数据
     var getValue = function(className) {
         var $elem = $('' + className + '');
-            //走路的路线坐标
+            // 走路的路线坐标
         return {
             height: $elem.height(),
             top: $elem.position().top
         };
-    }
+    };
     // 路的Y轴
     var pathY = function() {
         var data = getValue('.a_background_middle');
@@ -31,7 +31,7 @@ function BoyWalk() {
     // 设置下高度    
     $boy.css({
         top: pathY - boyHeight + 25
-    });
+    })
 
     // 暂停走路
     function pauseWalk() {
