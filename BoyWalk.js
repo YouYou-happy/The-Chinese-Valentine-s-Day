@@ -17,7 +17,7 @@ function BoyWalk() {
             height: $elem.height(),
             top: $elem.position().top
         };
-    };
+    }
     // 路的Y轴
     var pathY = function() {
         var data = getValue('.a_background_middle');
