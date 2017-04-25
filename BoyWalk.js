@@ -12,7 +12,7 @@ function BoyWalk() {
     // 获取数据
     var getValue = function(className) {
         var $elem = $('' + className + '');
-            // 走路的路线坐标
+        // 走路的路线坐标
         return {
             height: $elem.height(),
             top: $elem.position().top
@@ -35,7 +35,7 @@ function BoyWalk() {
 
     // 暂停走路
     function pauseWalk() {
-        $boy.addClass('pauseWalk');
+        $boy.addClass('pauseWalk')
     }
 
     // 恢复走路
