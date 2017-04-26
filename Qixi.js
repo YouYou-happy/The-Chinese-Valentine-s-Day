@@ -25,7 +25,7 @@
                 return;
             }
             count--;
-        };
+        }
         doorLeft.transition({
             'left': left
         }, time, complete);
@@ -81,7 +81,7 @@
         // 设置下高度    
         $boy.css({
             top: pathY - boyHeight + 25
-        })
+        });
 
         // 暂停走路
         function pauseWalk() {
@@ -136,7 +136,7 @@
             var offsetDoor = doorObj.offset();
             var doorOffsetLeft = offsetDoor.left;
             // 小孩当前的坐标
-            var offsetBoy     = $boy.offset();
+            var offsetBoy = $boy.offset();
             var boyOffetLeft = offsetBoy.left;
 
             // 当前需要移动的坐标
@@ -161,18 +161,30 @@
         function walkOutShop(runTime) {
             var defer = $.Deferred();
             restoreWalk();
-            //开始走路
+            // 开始走路
             var walkPlay = stratRun({
-                transform: 'translateX(' + instanceX + 'px),scale(1,1)',
-                opacity: 1
-            }, runTime);
-            //走路完毕
+                    transform: 'translateX(' + instanceX + 'px),translateY(0),,scale(1,1)',
+                    opacity: 1
+                }, runTime)
+                // 走路完毕
             walkPlay.done(function() {
                 defer.resolve();
-            });
-            return defer; 
+            })
+            return defer;
         }
 
+ 
+        // 取花
+        function talkFlower() {
+            // 增加延时等待效果
+            var defer = $.Deferred();
+            setTimeout(function() {
+                // 取花
+                $boy.addClass('slowFlolerWalk');
+                defer.resolve();
+            }, 1000);
+            return defer;
+        }
 
         // 计算移动距离
         function calculateDist(direction, proportion) {
@@ -183,8 +195,8 @@
         return {
             // 开始走路
             walkTo: function(time, proportionX, proportionY) {
-                var distX = calculateDist('x', proportionX)
-                var distY = calculateDist('y', proportionY)
+                var distX = calculateDist('x', proportionX);
+                var distY = calculateDist('y', proportionY);
                 return walkRun(time, distX, distY);
             },
             // 走进商店
@@ -194,13 +206,18 @@
             // 走出商店
             outShop: function() {
                 return walkOutShop.apply(null, arguments);
-            }, 
+            },
             // 停止走路
             stopWalk: function() {
                 pauseWalk();
             },
             setColoer: function(value) {
-                $boy.css('background-color', value)
+                $boy.css('background-color', value);
+            },
+            // 取花
+            talkFlower: function() {
+                return talkFlower();
             }
+
         }
     }
