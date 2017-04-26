@@ -66,6 +66,13 @@
        -moz-animation-iteration-count: infinite;
        -moz-animation-timing-function: steps(1, start)
    }
+   
+   /*人物暂停*/
+
+.pauseWalk {
+    -webkit-animation-play-state: paused;
+}
+   
    /*普通慢走*/
    
    @-webkit-keyframes person-slow {
