@@ -56,7 +56,6 @@
     background-size: 100% 100%;
 }
 
-
 /*鸟*/
 
 .bird {
@@ -66,9 +65,8 @@
     position: absolute;
     z-index: 10;
     right: -91px;
-    background: url(../images/bird.png) -182px 0px no-repeat;
+    background: url(http://img.mukewang.com/55ade1700001b38302730071.png) -182px 0px no-repeat;
 }
-
 .birdFly {
     -webkit-animation-name: bird-slow;
     -webkit-animation-duration: 400ms;
@@ -83,31 +81,33 @@
 
 /*鸟慢飞*/
 @-webkit-keyframes bird-slow {
+    /* 鸟飞的动作 */
     0% {
-        background-position: -182px 0px;
-    }
-    50% {
-        background-position: 0px 0px;
-    }
-    75% {
-        background-position: -91px 0px;
-    }
-    100% {
-        background-position: -182px 0px;
-    }
+    background-position: -182px 0px;
+}
+50% {
+    background-position: 0px 0px;
+}
+75% {
+    background-position: -91px 0px;
+}
+100% {
+    background-position: -182px 0px;
+}
 }
 
 @-moz-keyframes bird-slow {
+    /* 鸟飞的动作 */
     0% {
-        background-position: -182px 0px;
-    }
-    50% {
-        background-position: 0px 0px;
-    }
-    75% {
-        background-position: -91px 0px;
-    }
-    100% {
-        background-position: -182px 0px;
-    }
+    background-position: -182px 0px;
+}
+50% {
+    background-position: 0px 0px;
+}
+75% {
+    background-position: -91px 0px;
+}
+100% {
+    background-position: -182px 0px;
+}
 }
