@@ -16,9 +16,38 @@
     <div id='content'>
         <ul class='content-wrap'>
             <!-- 第一副画面 -->
-            <li></li>
+            <li>
+                <!-- 背景 -->
+                <div class="a_background">
+                    <div class="a_background_top"></div>
+                    <div class="a_background_middle"></div>
+                    <div class="a_background_botton"></div>
+                    </adiv>
+                    <!-- 云 -->
+                    <div class="cloudArea">
+                        <div class="cloud"></div>
+                        <div class="cloud"></div>
+                    </div>
+                    <!-- 太阳 -->
+                    <div id="sun"></div>
+            </li>
             <!-- 第二副画面 -->
-            <li></li>
+            <li>
+                <!-- 背景图 -->
+                <div class="b_background"></div>
+                <div class="b_background_preload"></div>
+                <!-- 商店 -->
+                <div class="shop">
+                    <div class="door">
+                        <div class="door-left"></div>
+                        <div class="door-right"></div>
+                    </div>
+                    <!-- 灯 -->
+                    <div class="lamp"></div>
+                </div>
+                <!-- 鸟 -->
+                <div class="bird"></div>
+            </li>
             <!-- 第三副画面 -->
             <li>
                 <!-- 背景图 -->
@@ -50,92 +79,53 @@
                 <div class="logo"></div>
             </li>
         </ul>
-        <!-- 飘花 -->
-        <div id="snowflake"></div>
-    </div>
-    <div class="button">
-        <button>开始飘花</button>
-    </div>
+        <div id="boy" class="charector"></div>
+        </div>
+        <div class="button">
+            <button>播放音乐</button>
+        </div>
 </body>
 <script type="text/javascript">
 $(function() {
 
-    var snowflakeURl = [
-        'http://img.mukewang.com/55adde120001d34e00410041.png',
-        'http://img.mukewang.com/55adde2a0001a91d00410041.png',
-        'http://img.mukewang.com/55adde5500013b2500400041.png',
-        'http://img.mukewang.com/55adde62000161c100410041.png',
-        'http://img.mukewang.com/55adde7f0001433000410041.png',
-        'http://img.mukewang.com/55addee7000117b500400041.png'
-    ]
+    //////////
+    // 小孩走路 //
+    //////////
+    var boy = BoyWalk();
 
-    ///////
-    //飘雪花 //
-    ///////
-    function snowflake() {
-        // 雪花容器
-        var $flakeContainer = $('#snowflake');
+    boy.talkFlower();
 
-        // 随机六张图
-        function getImagesName() {
-            return snowflakeURl[[Math.floor(Math.random() * 6)]];
-        }
-        // 创建一个雪花元素
-        function createSnowBox() {
-            var url = getImagesName();
-            return $('<div class="snowbox" />').css({
-                'width': 41,
-                'height': 41,
-                'position': 'absolute',
-                'backgroundSize': 'cover',
-                'zIndex': 100000,
-                'top': '-41px',
-                'backgroundImage': 'url(' + url + ')'
-            }).addClass('snowRoll');
-        }
-        // 开始飘花
-        setInterval(function() {
-            // 运动的轨迹
-            var startPositionLeft = Math.random() * visualWidth - 100,
-                startOpacity    = 1,
-                endPositionTop  = visualHeight - 40,
-                endPositionLeft = startPositionLeft - 100 + Math.random() * 500,
-                duration        = visualHeight * 10 + Math.random() * 5000;
+    // 音乐配置
+    var audioConfig = {
+        enable: true, // 是否开启音乐
+        playURl: 'http://www.imooc.com/upload/media/happy.wav', // 正常播放地址
+        cycleURL: 'http://www.imooc.com/upload/media/circulation.wav' // 正常循环播放地址
+    };
 
-            // 随机透明度，不小于0.5
-            var randomStart = Math.random();
-            randomStart = randomStart < 0.5 ? startOpacity : randomStart;
-
-            // 创建一个雪花
-            var $flake = createSnowBox();
-
-            // 设计起点位置
-            $flake.css({
-                left: startPositionLeft,
-                opacity : randomStart
-            });
-
-            // 加入到容器
-            $flakeContainer.append($flake);
-
-            // 开始执行动画
-            $flake.transition({
-                top: endPositionTop,
-                left: endPositionLeft,
-                opacity: 0.7
-            }, duration, 'ease-out', function() {
-                $(this).remove() //结束后删除
-            });
-            
-        }, 200);
+    /////////
+    //背景音乐 //
+    /////////
+    function Hmlt5Audio(url, isloop) {
+        var audio = new Audio(url);
+        audio.autoPlay = true;
+        audio.loop = isloop || false;
+        audio.play();
+        return {
+            end: function(callback) {
+                audio.addEventListener('ended', function() {
+                    callback();
+                }, false);
+            }
+        };
     }
 
-
-    //开始
-    $("button:first").click(function() {
-        snowflake()
-    })
-
+    // 开始
+    $("button").click(function() {
+        var audio1 = Hmlt5Audio(audioConfig.playURl);
+        audio1.end(function() {
+        Hmlt5Audio(audioConfig.cycleURL, true);    //
+        });
+    });
 })
 </script>
 <script type="text/javascript" src="Swipe.js"></script>
